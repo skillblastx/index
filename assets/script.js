@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.appendChild(scrollLoader);
     }
 
-    const carpeta = "/assets/images/listado-cartas-skillblast/";
+    const carpeta = "./assets/images/listado-cartas-skillblast/";
     const nombresImagenes = Array.from({ length: 342 }, (_, i) => "BBX SP" + String(i + 1).padStart(3, '0'));
     let indiceActual = 0;
     const cantidadPorCarga = 30;
