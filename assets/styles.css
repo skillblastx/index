@@ -28,14 +28,12 @@ body {
 /* Hero */
 .hero {
   position: relative;
-  width: 100%;
-  min-height: 90vh;
+  height: 85vh;
   background-image: url('./images/fondo-principal1.png');
   background-size: cover;
-  background-position: center;
+  background-position: center bottom;
   display: flex;
   justify-content: center;
-  overflow: hidden;
 }
 
 /* Overlay con degradado */
@@ -59,16 +57,6 @@ body {
   font-weight: 800;
   margin-bottom: 1rem;
   color: #000;
-}
-
-.hero{
-  position: relative;
-  height: 85vh;
-  background-image: url("/assets/images/fondo-principal1.png");
-  background-size: cover;
-  background-position: center bottom;
-  display: flex;
-  justify-content: center;
 }
 
 .hero-overlay{
