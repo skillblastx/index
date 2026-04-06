@@ -27,21 +27,30 @@ body {
 /* Hero */
 .hero {
   position: relative;
-  height: 85vh;
+  min-height: 80vh;
   background-image: url('./images/fondo-principal1.png');
   background-size: cover;
   background-position: center bottom;
   display: flex;
   justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
 }
 
 /* Contenido */
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 700px;
   padding: 2rem;
-  text-align: center;}
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
 
 /* Título */
 .hero-title {
@@ -54,6 +63,7 @@ body {
 .hero-overlay{
   position:absolute;
   inset:0;
+  width: 100%;
   background: linear-gradient(
     rgba(212, 175, 13, 0.425),
     rgba(255,255,255,0.6)
@@ -84,6 +94,7 @@ body {
   border-radius:6px;
   display:inline-block;
   font-weight:800;
+  margin: 10px auto;
 }
 
 /* caja del subtítulo */
@@ -92,6 +103,7 @@ body {
   padding:6px 14px;
   border-radius:4px;
   display:inline-block;
+  margin: 10px auto;
 }
 
 /* Swiper personalizado */
