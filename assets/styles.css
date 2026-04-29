@@ -27,17 +27,27 @@ body {
 /* Hero */
 .hero {
   position: relative;
-  min-height: 80vh;
-  background-image: url('./images/fondo-principal1.png');
-  background-size: cover;
-  background-position: center bottom;
-  display: flex;
-  justify-content: center;
+  min-height: 100svh;
+  background: url('./images/fondo-principal1.png') no-repeat 60% center / cover;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 1rem;
   overflow: hidden;
+}
+
+/* Fondo con movimiento */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  animation: heroZoom 12s ease-in-out infinite alternate;
+  transform: scale(1);
 }
 
 /* Contenido */
@@ -50,6 +60,7 @@ body {
   z-index: 2;
   max-width: 800px;
   margin: 0 auto;
+  animation: heroFadeUp 1.4s ease forwards;
 }
 
 /* Título */
@@ -58,17 +69,21 @@ body {
   font-weight: 800;
   margin-bottom: 1rem;
   color: #000;
+  
 }
 
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  width: 100%;
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   background: linear-gradient(
-    rgba(212, 175, 13, 0.425),
-    rgba(255,255,255,0.6)
+    to bottom,
+    rgba(0,0,0,0.25),
+    rgba(212,175,13,0.35),
+    rgba(255,255,255,0.65)
   );
 }
+
 .hero-tag{
   letter-spacing:3px;
   font-size:0.9rem;
@@ -95,6 +110,8 @@ body {
   display:inline-block;
   font-weight:800;
   margin: 10px auto;
+  animation: titleRise 1.2s ease forwards;
+  box-shadow: 0 10px 30px rgba(250, 204, 21, 0.35);
 }
 
 /* caja del subtítulo */
@@ -104,33 +121,8 @@ body {
   border-radius:4px;
   display:inline-block;
   margin: 10px auto;
-}
-
-/* Swiper personalizado */
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.swiper-button-next,
-.swiper-button-prev {
-  color: #facc15;
-}
-
-.swiper-pagination-bullet {
-  background-color: #facc15;
-  opacity: 0.8;
-}
-
-.swiper-pagination-bullet-active {
-  opacity: 1;
+  animation: subtitleFade 2s ease forwards;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
 /* Scroll infinito */
@@ -140,6 +132,65 @@ body {
   font-weight: 600;
   color: #facc15;
   display: none;
+}
+
+/* Imagen ¿Qué es Skill Blast X?*/
+.col-md-6 img {
+  border-radius: 20px;
+  animation: imageEntrance 1.4s ease forwards,
+  floatingImage 4s ease-in-out infinite;
+  opacity: 0;
+  transform: translateX(60px) scale(0.95);
+  transition: transform 0.4s ease;
+}
+
+/* Hover */
+.col-md-6 img:hover {
+  transform: scale(1.03) translateY(-8px);
+}
+
+/* Personajes */
+.slider-personajes {
+  overflow: hidden;
+  width: 100%;
+  padding: 40px 0;
+}
+
+.slider-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: scrollInfinite 35s linear infinite;
+}
+
+.card {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.card img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 18px;
+  transition: 0.4s ease;
+}
+
+.card img:hover {
+  transform: scale(1.05);
+}
+
+.slider-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollInfinite {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 10px));
+  }
 }
 
 /* Footer general */
@@ -158,36 +209,105 @@ body {
   transition: 0.3s ease;
 }
 
-/* Hover estiloso */
-.footer-link:hover {
-  color: white;
-  text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
-}
-
 /* Línea más sutil */
 .footer hr {
   opacity: 0.3;
 }
 
-/* Estiliza suavemente el carrusel */
-.carousel img {
-  border-radius: 15px;
+/* Animación imagen */
+.col-md-6 img:hover {
+  transform: scale(1.03) translateY(-8px);
+}
+
+/* Tamaño elegante y responsive */
+#carouselPersonajes {
+  max-width: 750px; 
+  margin: auto;
+}
+
+.img-carousel {
+  height: 420px;
   object-fit: cover;
-  max-height: 550px; /* ajustable */
 }
 
-/* ===== Carrusel Personajes ===== */
-.carousel-wrapper {
-  max-width: 700px;      /* controla el ancho total */
-  width: 100%;
+/* Tablet */
+@media (max-width: 768px) {
+  .img-carousel {
+    height: 320px;
+  }
 }
 
-/* Tamaño de las imágenes */
-#carouselPersonajes .carousel-item img {
-  height: 380px;         /* AJUSTA aquí si lo quieres más chico */
-  object-fit: contain;   /* mantiene proporción */
-  margin: 0 auto;
+/* Celular */
+@media (max-width: 576px) {
+  .img-carousel {
+    height: 220px;
+  }
 }
+/* Entrada */
+@keyframes imageEntrance {
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Flotación */
+@keyframes floatingImage {
+  0%,100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Animaciones */
+@keyframes heroZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes titleRise {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subtitleFade {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 /* Mobile */
 @media (max-width: 768px) {
@@ -195,20 +315,6 @@ body {
     height: 260px;
   }
 }
-
-/* Indicadores más visibles */
-.carousel-indicators button {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
-/* Flechas */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  filter: invert(100%);
-}
-
 
 /* En móviles: separaciones más armoniosas */
 @media (max-width: 768px) {
@@ -231,5 +337,12 @@ body {
 @media (max-width: 640px) {
   .sm\:text-3xl {
     font-size: 1.875rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 80vh;
+    background-position: center bottom;
   }
 }
