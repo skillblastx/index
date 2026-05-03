@@ -70,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Cargar primer bloque
     cargarImagenes();
   }
-
   // ===== Animación de los textos =====
   const faders = document.querySelectorAll(".fade-in");
   if (faders.length) {

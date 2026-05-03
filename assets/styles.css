@@ -156,6 +156,25 @@ body {
   padding: 40px 0;
 }
 
+/* Buscador de cartas*/
+ container #buscador-cartas {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 30px auto;
+  }
+
+input[type="text"] {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 15px;
+  border: 2px solid #facc15;
+  border-radius: 8px;
+  font-size: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
 .slider-track {
   display: flex;
   gap: 20px;
