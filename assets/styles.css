@@ -259,27 +259,6 @@ td:first-child {
   }
 }
 
-/* Footer general */
-.footer {
-  background-color: #000;
-  color: #ddd;
-  font-size: 0.95rem;
-}
-
-/* Links estilizados */
-.footer-link {
-  color: #facc15;
-  margin: 0 0.75rem;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s ease;
-}
-
-/* Línea más sutil */
-.footer hr {
-  opacity: 0.3;
-}
-
 /* Animación imagen */
 .col-md-6 img:hover {
   transform: scale(1.03) translateY(-8px);
