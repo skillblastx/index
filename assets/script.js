@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== Menú móvil =====
+  // Menú móvil
   const btn = document.getElementById('menu-btn');
   const menu = document.getElementById('mobile-menu');
   if (btn && menu) {
@@ -7,70 +7,112 @@ document.addEventListener("DOMContentLoaded", () => {
       menu.classList.toggle('hidden');
     });
   }
+// Scroll infinito de cartas & buscador
+const contenedor = document.getElementById("contenedor-imagenes");
+const loader = document.getElementById("loader");
+const inputBuscador = document.getElementById("buscador");
 
-  // ===== Scroll infinito de cartas =====
-  const contenedor = document.getElementById("contenedor-imagenes");
-  const loader = document.getElementById("loader");
+if (contenedor && loader) {
 
-  if (contenedor && loader) {
-    // Crear loader dinámico si no existe
-    let scrollLoader = document.getElementById("scroll-loader");
-    if (!scrollLoader) {
-      scrollLoader = document.createElement('div');
-      scrollLoader.id = "scroll-loader";
-      scrollLoader.className = "hidden text-center py-6 text-yellow-600 font-semibold";
-      scrollLoader.textContent = "Cargando más cartas...";
-      document.body.appendChild(scrollLoader);
-    }
-
-    const carpeta = "./assets/images/listado-cartas-skillblast/";
-    const nombresImagenes = Array.from({ length: 369 }, (_, i) => "BBX SP" + String(i + 1).padStart(3, '0'));
-    let indiceActual = 0;
-    const cantidadPorCarga = 30;
-
-    function cargarImagenes() {
-      scrollLoader.classList.remove("hidden");
-      setTimeout(() => {
-        for (let i = 0; i < cantidadPorCarga; i++) {
-          if (indiceActual >= nombresImagenes.length) break;
-
-          const nombreImg = nombresImagenes[indiceActual];
-          const nuevaImagen = document.createElement('img');
-          nuevaImagen.src = carpeta + nombreImg + ".jpg";
-          nuevaImagen.alt = nombreImg;
-          nuevaImagen.className = "w-full h-auto rounded-3xl shadow transition-transform duration-200 hover:scale-105";
-
-          contenedor.appendChild(nuevaImagen);
-          indiceActual++;
-        }
-        scrollLoader.classList.add("hidden");
-
-        // Mostrar imágenes la primera vez
-        if (indiceActual > 0) {
-          loader.classList.add("hidden");
-          contenedor.classList.remove("hidden");
-        }
-      }, 600);
-    }
-
-    // Scroll infinito con throttle simple
-    let scrollTimeout;
-    window.addEventListener("scroll", () => {
-      if (scrollTimeout) return;
-      scrollTimeout = setTimeout(() => {
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
-          if (indiceActual < nombresImagenes.length) {
-            cargarImagenes();
-          }
-        }
-        scrollTimeout = null;
-      }, 200);
-    });
-
-    // Cargar primer bloque
-    cargarImagenes();
+  let scrollLoader = document.getElementById("scroll-loader");
+  if (!scrollLoader) {
+    scrollLoader = document.createElement('div');
+    scrollLoader.id = "scroll-loader";
+    scrollLoader.className = "hidden text-center py-6 text-yellow-600 font-semibold";
+    scrollLoader.textContent = "Cargando más cartas...";
+    document.body.appendChild(scrollLoader);
   }
-  // ===== Animación de los textos =====
+
+  const carpeta = "./assets/images/listado-cartas-skillblast/";
+  const nombresImagenes = Array.from(
+    { length: 369 },
+    (_, i) => "BBX SP" + String(i + 1).padStart(3, '0')
+  );
+
+  let indiceActual = 0;
+  const cantidadPorCarga = 30;
+
+  // Filtro actual:
+  let filtro = "";
+
+  // Devolver lista filtrada
+  function obtenerListaFiltrada() {
+    if (!filtro) return nombresImagenes;
+    return nombresImagenes.filter(nombre =>
+      nombre.toLowerCase().includes(filtro.toLowerCase())
+    );
+  }
+
+  function cargarImagenes(reset = false) {
+    const lista = obtenerListaFiltrada();
+
+    scrollLoader.classList.remove("hidden");
+
+    setTimeout(() => {
+
+      if (reset) {
+        contenedor.innerHTML = "";
+        indiceActual = 0;
+      }
+
+      let cargadas = 0;
+
+      while (cargadas < cantidadPorCarga && indiceActual < lista.length) {
+        const nombreImg = lista[indiceActual];
+
+        const img = document.createElement("img");
+        img.src = carpeta + nombreImg + ".jpg";
+        img.alt = nombreImg;
+        img.className =
+          "w-full h-auto rounded-3xl shadow transition-transform duration-200 hover:scale-105";
+
+        contenedor.appendChild(img);
+
+        indiceActual++;
+        cargadas++;
+      }
+
+      scrollLoader.classList.add("hidden");
+
+      if (indiceActual > 0) {
+        loader.classList.add("hidden");
+        contenedor.classList.remove("hidden");
+      }
+
+    }, 600);
+  }
+
+  // Scroll Infinito
+  let scrollTimeout;
+  window.addEventListener("scroll", () => {
+    if (scrollTimeout) return;
+
+    scrollTimeout = setTimeout(() => {
+      const lista = obtenerListaFiltrada();
+
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+        if (indiceActual < lista.length) {
+          cargarImagenes();
+        }
+      }
+
+      scrollTimeout = null;
+    }, 200);
+  });
+
+  // Buscador
+  inputBuscador.addEventListener("input", (e) => {
+    filtro = e.target.value.trim();
+
+    indiceActual = 0;
+    cargarImagenes(true);
+  });
+
+  // Carga inicial
+  cargarImagenes();
+}
+
+  // Animación Textos
   const faders = document.querySelectorAll(".fade-in");
   if (faders.length) {
     const appearOptions = {
@@ -88,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
     faders.forEach(fader => appearOnScroll.observe(fader));
   }
 
-  // ===== Inicializar Swiper =====
+  // Swiper
   if (document.querySelector(".mySwiper")) {
     const swiper = new Swiper(".mySwiper", {
       direction: "vertical",

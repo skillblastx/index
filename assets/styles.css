@@ -2,8 +2,11 @@ body {
   background-color: #ffffff;
   color: white;
 }
+
 @keyframes fadeIn {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Estilo de cartas.html */
@@ -69,60 +72,59 @@ body {
   font-weight: 800;
   margin-bottom: 1rem;
   color: #000;
-  
+
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.25),
-    rgba(212,175,13,0.35),
-    rgba(255,255,255,0.65)
-  );
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.25),
+      rgba(212, 175, 13, 0.35),
+      rgba(255, 255, 255, 0.65));
 }
 
-.hero-tag{
-  letter-spacing:3px;
-  font-size:0.9rem;
-  font-weight:600;
-  color:#444;
+.hero-tag {
+  letter-spacing: 3px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #444;
 }
 
-.hero-title{
+.hero-title {
   font-size: clamp(2.8rem, 5vw, 4rem);
-  font-weight:800;
-  margin:10px 0;
+  font-weight: 800;
+  margin: 10px 0;
 }
 
-.hero-subtitle{
-  font-size:1.1rem;
-  margin-bottom:25px;
-  color:#333;
+.hero-subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  color: #333;
 }
+
 /* caja del título */
-.title-box{
-  background:#facc15;
-  padding:10px 20px;
-  border-radius:6px;
-  display:inline-block;
-  font-weight:800;
+.title-box {
+  background: #facc15;
+  padding: 10px 20px;
+  border-radius: 6px;
+  display: inline-block;
+  font-weight: 800;
   margin: 10px auto;
   animation: titleRise 1.2s ease forwards;
   box-shadow: 0 10px 30px rgba(250, 204, 21, 0.35);
 }
 
 /* caja del subtítulo */
-.subtitle-box{
-  background:white;
-  padding:6px 14px;
-  border-radius:4px;
-  display:inline-block;
+.subtitle-box {
+  background: white;
+  padding: 6px 14px;
+  border-radius: 4px;
+  display: inline-block;
   margin: 10px auto;
   animation: subtitleFade 2s ease forwards;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* Scroll infinito */
@@ -138,7 +140,7 @@ body {
 .col-md-6 img {
   border-radius: 20px;
   animation: imageEntrance 1.4s ease forwards,
-  floatingImage 4s ease-in-out infinite;
+    floatingImage 4s ease-in-out infinite;
   opacity: 0;
   transform: translateX(60px) scale(0.95);
   transition: transform 0.4s ease;
@@ -157,12 +159,12 @@ body {
 }
 
 /* Buscador de cartas*/
- container #buscador-cartas {
+container #buscador-cartas {
   display: flex;
   gap: 10px;
   justify-content: center;
   margin: 30px auto;
-  }
+}
 
 input[type="text"] {
   width: 100%;
@@ -230,7 +232,7 @@ td:first-child {
 }
 
 .carta-info span {
-  white-space: nowrap; 
+  white-space: nowrap;
   font-size: 1.2rem;
   font-weight: 600;
 }
@@ -254,6 +256,7 @@ td:first-child {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(calc(-50% - 10px));
   }
@@ -266,7 +269,7 @@ td:first-child {
 
 /* Tamaño Carrusel Personajes */
 #carouselPersonajes {
-  max-width: 750px; 
+  max-width: 750px;
   margin: auto;
 }
 
@@ -275,8 +278,35 @@ td:first-child {
   object-fit: cover;
 }
 
-/* Ajuste de tamaños para dispositivos*/
+/* Contenedor del buscador */
+#buscador-cartas {
+  max-width: 500px;
+  margin: 20px auto;
+}
 
+/* Input de búsqueda */
+#buscador {
+  height: 45px;
+  padding: 0 15px;
+  font-size: 16px;
+  border-radius: 10px 0 0 10px;
+  box-sizing: border-box;
+}
+
+/* Botón */
+#buscador-cartas .btn {
+  height: 45px;
+  border-radius: 0 10px 10px 0;
+  padding: 0 20px;
+}
+
+/* Efecto al seleccionar el input */
+#buscador:focus {
+  border-color: #0066cc;
+  box-shadow: 0 0 5px rgba(0, 102, 204, 0.3);
+}
+
+/* Ajuste de tamaños para dispositivos*/
 /* Tablet */
 @media (max-width: 768px) {
   .img-carousel {
@@ -290,6 +320,7 @@ td:first-child {
     height: 220px;
   }
 }
+
 /* Entrada */
 @keyframes imageEntrance {
   to {
@@ -300,7 +331,9 @@ td:first-child {
 
 /* Flotación */
 @keyframes floatingImage {
-  0%,100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
 
@@ -314,6 +347,7 @@ td:first-child {
   from {
     transform: scale(1);
   }
+
   to {
     transform: scale(1.08);
   }
@@ -376,6 +410,7 @@ td:first-child {
   .lg\:w-1\/2 {
     width: 100% !important;
   }
+
   .lg\:flex-row {
     flex-direction: column !important;
   }
