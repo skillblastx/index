@@ -22,10 +22,10 @@ if (contenedor && loader) {
     scrollLoader.textContent = "Cargando más cartas...";
     document.body.appendChild(scrollLoader);
   }
-
+// Cambiar número a medida se agregan más cartas
   const carpeta = "./assets/images/listado-cartas-skillblast/";
   const nombresImagenes = Array.from(
-    { length: 369 },
+    { length: 406 },
     (_, i) => "BBX SP" + String(i + 1).padStart(3, '0')
   );
 
