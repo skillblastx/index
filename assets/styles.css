@@ -252,6 +252,19 @@ td:first-child {
   background-color: #f5f5f5;
 }
 
+
+/* reglas.html */
+.codigo-conducta {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.reglas {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+
 @keyframes scrollInfinite {
   from {
     transform: translateX(0);
