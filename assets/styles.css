@@ -9,6 +9,35 @@ body {
   }
 }
 
+/* Navbar */
+.navbar {
+    padding: 0.8rem 1rem;
+}
+
+.navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: color .3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #facc15;
+}
+
+/* Móvil */
+@media (max-width: 991px) {
+
+    .navbar-nav {
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .navbar-nav .nav-item {
+        margin: .25rem 0;
+    }
+
+}
+
 /* Estilo de cartas.html */
 #contenedor-imagenes img {
   width: 100%;
