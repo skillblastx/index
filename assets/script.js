@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Número de cartas
     const carpeta = "./assets/images/listado-cartas-skillblast/";
     const nombresImagenes = Array.from(
-      { length: 421 },
+      { length: 437 },
       (_, i) => "BBX SP" + String(i + 1).padStart(3, '0')
     );
 
