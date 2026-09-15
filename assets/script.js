@@ -2,10 +2,6 @@ import { cartas } from "../data/cartas.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ==========================================
-     MENÚ MÓVIL
-  ========================================== */
-
   const btn = document.getElementById("menu-btn");
   const menu = document.getElementById("mobile-menu");
 
@@ -15,21 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
-  /* ==========================================
-     ELEMENTOS DEL BUSCADOR
-  ========================================== */
-
   const contenedor = document.getElementById("contenedor-imagenes");
   const loader = document.getElementById("loader");
   const inputBuscador = document.getElementById("buscador");
   const btnBuscar = document.getElementById("btn-buscar");
   const contador = document.getElementById("contador-cartas");
-
-
-  /* ==========================================
-     GALERÍA DE CARTAS
-  ========================================== */
 
   if (contenedor && loader && inputBuscador) {
 
@@ -41,10 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let indiceActual = 0;
     let filtro = "";
 
-
-    /* ------------------------------------------
-       LOADER DE SCROLL
-    ------------------------------------------ */
 
     let scrollLoader = document.getElementById("scroll-loader");
 
@@ -59,19 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
       contenedor.parentElement.appendChild(scrollLoader);
     }
 
-
-    /* ------------------------------------------
-       NORMALIZAR TEXTO
-       
-       Permite buscar:
-       Haruka
-       HARUKA
-       haruka
-       etc.
-       
-       También elimina tildes.
-    ------------------------------------------ */
-
     function normalizarTexto(texto) {
 
       return String(texto)
@@ -81,11 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .trim();
 
     }
-
-
-    /* ------------------------------------------
-       OBTENER DATOS DE UNA CARTA
-    ------------------------------------------ */
 
     function obtenerNumero(carta) {
       return carta["numero de carta"];
@@ -98,11 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function obtenerArquetipo(carta) {
       return carta.arquetipo || "";
     }
-
-
-    /* ------------------------------------------
-       FILTRAR CARTAS
-    ------------------------------------------ */
 
     function obtenerListaFiltrada() {
 
@@ -136,11 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-
-    /* ------------------------------------------
-       ACTUALIZAR CONTADOR
-    ------------------------------------------ */
-
     function actualizarContador(lista) {
 
       if (!contador) return;
@@ -167,11 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
         `${cantidad} carta${cantidad !== 1 ? "s" : ""} encontrada${cantidad !== 1 ? "s" : ""}`;
 
     }
-
-
-    /* ------------------------------------------
-       CREAR CARTA
-    ------------------------------------------ */
 
     function crearCarta(carta) {
 
@@ -204,10 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
       imagen.className =
         "carta-imagen";
 
-
-      /* --------------------------------------
-         Información de la carta
-      -------------------------------------- */
 
       const informacion =
         document.createElement("div");
@@ -259,11 +204,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-
-    /* ------------------------------------------
-       CARGAR CARTAS
-    ------------------------------------------ */
-
     function cargarImagenes(reset = false) {
 
       const lista =
@@ -280,9 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       actualizarContador(lista);
-
-
-      /* Si no hay resultados */
 
       if (lista.length === 0) {
 
@@ -309,9 +246,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return;
       }
-
-
-      /* Mostrar loader */
 
       if (indiceActual < lista.length) {
         scrollLoader.style.display = "block";
@@ -343,19 +277,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-
         scrollLoader.style.display =
           "none";
 
 
-        /* Ocultar loader principal */
-
         loader.classList.add("hidden");
 
         contenedor.classList.remove("hidden");
-
-
-        /* Si ya cargamos todas */
 
         if (indiceActual >= lista.length) {
 
@@ -367,11 +295,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 300);
 
     }
-
-
-    /* ==========================================
-       SCROLL INFINITO
-    ========================================== */
 
     let scrollTimeout;
 
@@ -408,11 +331,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-
-    /* ==========================================
-       BUSCADOR
-    ========================================== */
-
     function realizarBusqueda() {
 
       filtro =
@@ -422,16 +340,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-
-    /* Buscar mientras escribe */
-
     inputBuscador.addEventListener(
       "input",
       realizarBusqueda
     );
-
-
-    /* Buscar mediante botón */
 
     if (btnBuscar) {
 
@@ -441,9 +353,6 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
     }
-
-
-    /* Enter para buscar */
 
     inputBuscador.addEventListener(
       "keydown",
@@ -458,19 +367,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     );
 
-
-    /* ==========================================
-       CARGA INICIAL
-    ========================================== */
-
     cargarImagenes();
 
   }
-
-
-  /* ==========================================
-     ANIMACIONES FADE-IN
-  ========================================== */
 
   const faders =
     document.querySelectorAll(".fade-in");
@@ -520,11 +419,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
-
-  /* ==========================================
-     SWIPER
-  ========================================== */
-
+  
   if (document.querySelector(".mySwiper")) {
 
     const swiper =
