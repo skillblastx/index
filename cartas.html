@@ -85,15 +85,47 @@
     </div>
   </section>
 
-  <!-- Buscador -->
-  <section class="container-fluid" id="buscador-cartas">
-    <div class="input-group">
-      <input type="search" class="form-control" placeholder="Número de la carta" id="buscador" />
-      <button type="button" class="btn btn-outline-primary">
-        Buscar
-      </button>
+
+  <!-- Buscador de cartas -->
+  <section class="container py-5" id="buscador-cartas">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10">
+        <div class="text-center mb-4">
+          <h2>
+            Buscar cartas
+          </h2>
+          <p class="text-secondary mb-0">
+            Busca por número, nombre o arquetipo.
+          </p>
+        </div>
+
+
+        <!-- Campo de búsqueda -->
+        <div class="input-group">
+
+          <input type="search" class="form-control" id="buscador" placeholder="Ej: 25, Haruka, Muro de hielo..."
+            aria-label="Buscar carta" autocomplete="off">
+
+          <button type="button" class="btn btn-outline-primary" id="btn-buscar">
+            Buscar
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Contador de cartas-->
+  <section class="container pb-3">
+    <div id="contador-cartas" class="text-center text-secondary">
+      <!-- JavaScript colocará aquí la cantidad de resultados -->
     </div>
   </section>
+
   <!-- Loader -->
   <div id="loader" class="d-flex flex-column align-items-center justify-content-center py-5">
     <div class="spinner-border text-warning mb-3" style="width:3rem; height:3rem;" role="status">
@@ -105,7 +137,6 @@
     <!-- Se llenará dinámicamente -->
   </div>
 
-  </section>
   <!-- Footer -->
   <footer class="bg-white text-secondary py-4 mt-5">
     <div class="container">
@@ -138,7 +169,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
-  <script src="./assets/script.js"></script>
+  <script type="module" src="./assets/script.js"></script>
 </body>
 
 </html>

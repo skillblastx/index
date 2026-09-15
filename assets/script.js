@@ -1,143 +1,562 @@
+import { cartas } from "../data/cartas.js";
+
 document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById('menu-btn');
-  const menu = document.getElementById('mobile-menu');
+
+  /* ==========================================
+     MENÚ MÓVIL
+  ========================================== */
+
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("mobile-menu");
+
   if (btn && menu) {
-    btn.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
     });
   }
+
+
+  /* ==========================================
+     ELEMENTOS DEL BUSCADOR
+  ========================================== */
 
   const contenedor = document.getElementById("contenedor-imagenes");
   const loader = document.getElementById("loader");
   const inputBuscador = document.getElementById("buscador");
+  const btnBuscar = document.getElementById("btn-buscar");
+  const contador = document.getElementById("contador-cartas");
 
-  if (contenedor && loader) {
 
-    let scrollLoader = document.getElementById("scroll-loader");
-    if (!scrollLoader) {
-      scrollLoader = document.createElement('div');
-      scrollLoader.id = "scroll-loader";
-      scrollLoader.className = "hidden text-center py-6 text-yellow-600 font-semibold";
-      scrollLoader.textContent = "Cargando más cartas...";
-      document.body.appendChild(scrollLoader);
-    }
+  /* ==========================================
+     GALERÍA DE CARTAS
+  ========================================== */
 
-    // Número de cartas
-    const carpeta = "./assets/images/listado-cartas-skillblast/";
-    const nombresImagenes = Array.from(
-      { length: 437 },
-      (_, i) => "BBX SP" + String(i + 1).padStart(3, '0')
-    );
+  if (contenedor && loader && inputBuscador) {
 
-    let indiceActual = 0;
+    const carpeta =
+      "./assets/images/listado-cartas-skillblast/";
+
     const cantidadPorCarga = 30;
 
+    let indiceActual = 0;
     let filtro = "";
 
-    function obtenerListaFiltrada() {
-      if (!filtro) return nombresImagenes;
-      return nombresImagenes.filter(nombre =>
-        nombre.toLowerCase().includes(filtro.toLowerCase())
-      );
+
+    /* ------------------------------------------
+       LOADER DE SCROLL
+    ------------------------------------------ */
+
+    let scrollLoader = document.getElementById("scroll-loader");
+
+    if (!scrollLoader) {
+
+      scrollLoader = document.createElement("div");
+
+      scrollLoader.id = "scroll-loader";
+      scrollLoader.className = "text-center py-4";
+      scrollLoader.textContent = "Cargando más cartas...";
+
+      contenedor.parentElement.appendChild(scrollLoader);
     }
 
-    function cargarImagenes(reset = false) {
-      const lista = obtenerListaFiltrada();
 
-      scrollLoader.classList.remove("hidden");
+    /* ------------------------------------------
+       NORMALIZAR TEXTO
+       
+       Permite buscar:
+       Haruka
+       HARUKA
+       haruka
+       etc.
+       
+       También elimina tildes.
+    ------------------------------------------ */
+
+    function normalizarTexto(texto) {
+
+      return String(texto)
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
+
+    }
+
+
+    /* ------------------------------------------
+       OBTENER DATOS DE UNA CARTA
+    ------------------------------------------ */
+
+    function obtenerNumero(carta) {
+      return carta["numero de carta"];
+    }
+
+    function obtenerNombre(carta) {
+      return carta.nombre || "";
+    }
+
+    function obtenerArquetipo(carta) {
+      return carta.arquetipo || "";
+    }
+
+
+    /* ------------------------------------------
+       FILTRAR CARTAS
+    ------------------------------------------ */
+
+    function obtenerListaFiltrada() {
+
+      if (!filtro) {
+        return cartas;
+      }
+
+      const termino = normalizarTexto(filtro);
+
+      return cartas.filter((carta) => {
+
+        const numero = normalizarTexto(
+          obtenerNumero(carta)
+        );
+
+        const nombre = normalizarTexto(
+          obtenerNombre(carta)
+        );
+
+        const arquetipo = normalizarTexto(
+          obtenerArquetipo(carta)
+        );
+
+        return (
+          numero.includes(termino) ||
+          nombre.includes(termino) ||
+          arquetipo.includes(termino)
+        );
+
+      });
+
+    }
+
+
+    /* ------------------------------------------
+       ACTUALIZAR CONTADOR
+    ------------------------------------------ */
+
+    function actualizarContador(lista) {
+
+      if (!contador) return;
+
+      const cantidad = lista.length;
+
+      if (!filtro) {
+
+        contador.textContent =
+          `Mostrando ${cantidad} cartas`;
+
+        return;
+      }
+
+      if (cantidad === 0) {
+
+        contador.textContent =
+          "No se encontraron cartas.";
+
+        return;
+      }
+
+      contador.textContent =
+        `${cantidad} carta${cantidad !== 1 ? "s" : ""} encontrada${cantidad !== 1 ? "s" : ""}`;
+
+    }
+
+
+    /* ------------------------------------------
+       CREAR CARTA
+    ------------------------------------------ */
+
+    function crearCarta(carta) {
+
+      const numero = obtenerNumero(carta);
+      const nombre = obtenerNombre(carta);
+      const arquetipo = obtenerArquetipo(carta);
+
+      const columna = document.createElement("div");
+
+      columna.className =
+        "carta-item";
+
+
+      const imagen = document.createElement("img");
+
+      const numeroFormateado =
+        String(numero).padStart(3, "0");
+
+      const nombreImagen =
+        `BBX SP${numeroFormateado}`;
+
+      imagen.src =
+        carpeta + nombreImagen + ".jpg";
+
+      imagen.alt =
+        `Carta ${numero}: ${nombre}`;
+
+      imagen.loading = "lazy";
+
+      imagen.className =
+        "carta-imagen";
+
+
+      /* --------------------------------------
+         Información de la carta
+      -------------------------------------- */
+
+      const informacion =
+        document.createElement("div");
+
+      informacion.className =
+        "carta-datos";
+
+
+      const numeroElemento =
+        document.createElement("p");
+
+      numeroElemento.className =
+        "carta-numero";
+
+      numeroElemento.textContent =
+        `#${numero}`;
+
+
+      const nombreElemento =
+        document.createElement("h3");
+
+      nombreElemento.className =
+        "carta-nombre";
+
+      nombreElemento.textContent =
+        nombre;
+
+
+      const arquetipoElemento =
+        document.createElement("p");
+
+      arquetipoElemento.className =
+        "carta-arquetipo";
+
+      arquetipoElemento.textContent =
+        `Arquetipo: ${arquetipo}`;
+
+
+      informacion.appendChild(numeroElemento);
+      informacion.appendChild(nombreElemento);
+      informacion.appendChild(arquetipoElemento);
+
+
+      columna.appendChild(imagen);
+      columna.appendChild(informacion);
+
+
+      return columna;
+
+    }
+
+
+    /* ------------------------------------------
+       CARGAR CARTAS
+    ------------------------------------------ */
+
+    function cargarImagenes(reset = false) {
+
+      const lista =
+        obtenerListaFiltrada();
+
+
+      if (reset) {
+
+        contenedor.innerHTML = "";
+
+        indiceActual = 0;
+
+      }
+
+
+      actualizarContador(lista);
+
+
+      /* Si no hay resultados */
+
+      if (lista.length === 0) {
+
+        contenedor.innerHTML = "";
+
+        const mensaje =
+          document.createElement("div");
+
+        mensaje.className =
+          "col-12 text-center py-5";
+
+        mensaje.innerHTML = `
+          <h3>No encontramos cartas 😢</h3>
+          <p>
+            Intenta buscar por número, nombre o arquetipo.
+          </p>
+        `;
+
+        contenedor.appendChild(mensaje);
+
+        loader.classList.add("hidden");
+
+        scrollLoader.style.display = "none";
+
+        return;
+      }
+
+
+      /* Mostrar loader */
+
+      if (indiceActual < lista.length) {
+        scrollLoader.style.display = "block";
+      }
+
 
       setTimeout(() => {
 
-        if (reset) {
-          contenedor.innerHTML = "";
-          indiceActual = 0;
-        }
-
         let cargadas = 0;
 
-        while (cargadas < cantidadPorCarga && indiceActual < lista.length) {
-          const nombreImg = lista[indiceActual];
 
-          const img = document.createElement("img");
-          img.src = carpeta + nombreImg + ".jpg";
-          img.alt = nombreImg;
-          img.className =
-            "w-full h-auto rounded-3xl shadow transition-transform duration-200 hover:scale-105";
+        while (
+          cargadas < cantidadPorCarga &&
+          indiceActual < lista.length
+        ) {
 
-          contenedor.appendChild(img);
+          const carta =
+            lista[indiceActual];
+
+          const elementoCarta =
+            crearCarta(carta);
+
+          contenedor.appendChild(
+            elementoCarta
+          );
 
           indiceActual++;
           cargadas++;
+
         }
 
-        scrollLoader.classList.add("hidden");
 
-        if (indiceActual > 0) {
-          loader.classList.add("hidden");
-          contenedor.classList.remove("hidden");
+        scrollLoader.style.display =
+          "none";
+
+
+        /* Ocultar loader principal */
+
+        loader.classList.add("hidden");
+
+        contenedor.classList.remove("hidden");
+
+
+        /* Si ya cargamos todas */
+
+        if (indiceActual >= lista.length) {
+
+          scrollLoader.style.display =
+            "none";
+
         }
 
-      }, 600);
+      }, 300);
+
     }
 
+
+    /* ==========================================
+       SCROLL INFINITO
+    ========================================== */
+
     let scrollTimeout;
+
     window.addEventListener("scroll", () => {
+
       if (scrollTimeout) return;
 
-      scrollTimeout = setTimeout(() => {
-        const lista = obtenerListaFiltrada();
 
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
-          if (indiceActual < lista.length) {
-            cargarImagenes();
-          }
+      scrollTimeout = setTimeout(() => {
+
+        const lista =
+          obtenerListaFiltrada();
+
+
+        const cercaDelFinal =
+          window.innerHeight +
+          window.scrollY >=
+          document.body.offsetHeight - 300;
+
+
+        if (
+          cercaDelFinal &&
+          indiceActual < lista.length
+        ) {
+
+          cargarImagenes();
+
         }
+
 
         scrollTimeout = null;
+
       }, 200);
+
     });
 
-    // Buscador
-    inputBuscador.addEventListener("input", (e) => {
-      filtro = e.target.value.trim();
 
-      indiceActual = 0;
+    /* ==========================================
+       BUSCADOR
+    ========================================== */
+
+    function realizarBusqueda() {
+
+      filtro =
+        inputBuscador.value.trim();
+
       cargarImagenes(true);
-    });
+
+    }
+
+
+    /* Buscar mientras escribe */
+
+    inputBuscador.addEventListener(
+      "input",
+      realizarBusqueda
+    );
+
+
+    /* Buscar mediante botón */
+
+    if (btnBuscar) {
+
+      btnBuscar.addEventListener(
+        "click",
+        realizarBusqueda
+      );
+
+    }
+
+
+    /* Enter para buscar */
+
+    inputBuscador.addEventListener(
+      "keydown",
+      (evento) => {
+
+        if (evento.key === "Enter") {
+
+          realizarBusqueda();
+
+        }
+
+      }
+    );
+
+
+    /* ==========================================
+       CARGA INICIAL
+    ========================================== */
 
     cargarImagenes();
+
   }
 
-  const faders = document.querySelectorAll(".fade-in");
+
+  /* ==========================================
+     ANIMACIONES FADE-IN
+  ========================================== */
+
+  const faders =
+    document.querySelectorAll(".fade-in");
+
   if (faders.length) {
+
     const appearOptions = {
+
       threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px"
+
+      rootMargin:
+        "0px 0px -50px 0px"
+
     };
-    const appearOnScroll = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, appearOptions);
-    faders.forEach(fader => appearOnScroll.observe(fader));
+
+
+    const appearOnScroll =
+      new IntersectionObserver(
+        (entries, observer) => {
+
+          entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add(
+                "show"
+              );
+
+              observer.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        appearOptions
+      );
+
+
+    faders.forEach((fader) => {
+
+      appearOnScroll.observe(fader);
+
+    });
+
   }
+
+
+  /* ==========================================
+     SWIPER
+  ========================================== */
 
   if (document.querySelector(".mySwiper")) {
-    const swiper = new Swiper(".mySwiper", {
-      direction: "vertical",
-      slidesPerView: 2,
-      spaceBetween: 20,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
+
+    const swiper =
+      new Swiper(".mySwiper", {
+
+        direction: "vertical",
+
+        slidesPerView: 2,
+
+        spaceBetween: 20,
+
+        navigation: {
+
+          nextEl:
+            ".swiper-button-next",
+
+          prevEl:
+            ".swiper-button-prev"
+
+        },
+
+        pagination: {
+
+          el:
+            ".swiper-pagination",
+
+          clickable: true
+
+        }
+
+      });
+
   }
+
 });
