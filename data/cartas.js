@@ -2183,5 +2183,195 @@ export const cartas = [
     "numero de carta": 437,
     "nombre": "¡Alzar vuelo!",
     "arquetipo": "Dranier"
+  },
+  {
+    "numero de carta": 438,
+    "nombre": "¡Rugir del dragón!",
+    "arquetipo": "Takoizu"
+  },
+  {
+    "numero de carta": 439,
+    "nombre": "Fogata en el sendero",
+    "arquetipo": "Dranier"
+  },
+  {
+    "numero de carta": 440,
+    "nombre": "Takoizu",
+    "arquetipo": "Takoizu"
+  },
+  {
+    "numero de carta": 441,
+    "nombre": "Cadena nexo",
+    "arquetipo": "Dranier"
+  },
+  {
+    "numero de carta": 442,
+    "nombre": "Lyna",
+    "arquetipo": "Lyna"
+  },
+  {
+    "numero de carta": 443,
+    "nombre": "Imponencia Fafnirland",
+    "arquetipo": "Nara; Ryu-chan"
+  },
+  {
+    "numero de carta": 444,
+    "nombre": "Encanto demoníaco",
+    "arquetipo": "Eishet"
+  },
+  {
+    "numero de carta": 445,
+    "nombre": "Bajo control",
+    "arquetipo": "Void-oh; Chiako"
+  },
+  {
+    "numero de carta": 446,
+    "nombre": "Void-oh",
+    "arquetipo": "Void-oh"
+  },
+  {
+    "numero de carta": 447,
+    "nombre": "Dranier",
+    "arquetipo": "Dranier"
+  },
+  {
+    "numero de carta": 448,
+    "nombre": "Katshi",
+    "arquetipo": "Katshi"
+  },
+  {
+    "numero de carta": 449,
+    "nombre": "Decisión maldita",
+    "arquetipo": "General"
+  },
+  {
+    "numero de carta": 450,
+    "nombre": "Ejecución fallida",
+    "arquetipo": "General"
+  },
+  {
+    "numero de carta": 451,
+    "nombre": "Madrugada",
+    "arquetipo": "General"
+  },
+  {
+    "numero de carta": 452,
+    "nombre": "Zzz...",
+    "arquetipo": "General"
+  },
+  {
+    "numero de carta": 453,
+    "nombre": "Camino de regreso",
+    "arquetipo": "General"
+  },
+  {
+    "numero de carta": 454,
+    "nombre": "Frente a frente",
+    "arquetipo": "General"
+  },
+  {
+    "numero de carta": 455,
+    "nombre": "Retrato del dragón",
+    "arquetipo": "Ryu-chan; Nara"
+  },
+  {
+    "numero de carta": 456,
+    "nombre": "Galería Fafnirland",
+    "arquetipo": "Nara, Ryu-chan; Nobuko"
+  },
+  {
+    "numero de carta": 457,
+    "nombre": "Moneda Skill",
+    "arquetipo": "General"
+  },
+  {
+    "numero de carta": 458,
+    "nombre": "Tres voluntades",
+    "arquetipo": "Haruka; Marina; Lyna"
+  },
+  {
+    "numero de carta": 459,
+    "nombre": "Deida",
+    "arquetipo": "Deida"
+  },
+  {
+    "numero de carta": 460,
+    "nombre": "Devoción",
+    "arquetipo": "Helica; Deida"
+  },
+  {
+    "numero de carta": 461,
+    "nombre": "Asimilar oscuridad",
+    "arquetipo": "Katshi"
+  },
+  {
+    "numero de carta": 462,
+    "nombre": "Katshi",
+    "arquetipo": "Katshi"
+  },
+  {
+    "numero de carta": 463,
+    "nombre": "Cables",
+    "arquetipo": "Chiako"
+  },
+  {
+    "numero de carta": 464,
+    "nombre": "Secreto revelado",
+    "arquetipo": "Dranier; Takoizu"
+  },
+  {
+    "numero de carta": 465,
+    "nombre": "Perderse en la ira",
+    "arquetipo": "Tagero"
+  },
+  {
+    "numero de carta": 466,
+    "nombre": "Ampliar control",
+    "arquetipo": "Sophia"
+  },
+  {
+    "numero de carta": 467,
+    "nombre": "Tienda",
+    "arquetipo": "General"
+  },
+  {
+    "numero de carta": 468,
+    "nombre": "Activar programa",
+    "arquetipo": "Chiako"
+  },
+  {
+    "numero de carta": 469,
+    "nombre": "Mentalidad",
+    "arquetipo": "General"
+  },
+  {
+    "numero de carta": 470,
+    "nombre": "Eishet",
+    "arquetipo": "Eishet"
+  },
+  {
+    "numero de carta": 471,
+    "nombre": "Concentración",
+    "arquetipo": "Katherine"
+  },
+  {
+    "numero de carta": 472,
+    "nombre": "Lyna",
+    "arquetipo": "Lyna"
+  },
+  {
+    "numero de carta": 473,
+    "nombre": "Haruka",
+    "arquetipo": "Haruka"
+  },
+  {
+    "numero de carta": 474,
+    "nombre": "Vórtice de cenizas",
+    "arquetipo": "Katherine"
+  },
+  {
+    "numero de carta": 475,
+    "nombre": "No otra vez...",
+    "arquetipo": "Lyna"
   }
 ];
