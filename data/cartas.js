@@ -2373,5 +2373,35 @@ export const cartas = [
     "numero de carta": 475,
     "nombre": "No otra vez...",
     "arquetipo": "Lyna"
+  },
+  {
+    "numero de carta": 476,
+    "nombre": "Mirada sincera",
+    "arquetipo": "Marina"
+  },
+  {
+    "numero de carta": 477,
+    "nombre": "Valía de fuego",
+    "arquetipo": "Roy"
+  },
+  {
+    "numero de carta": 478,
+    "nombre": "Roy",
+    "arquetipo": "Roy"
+  },
+  {
+    "numero de carta": 479,
+    "nombre": "Escalera Skill",
+    "arquetipo": "General"
+  },
+  {
+    "numero de carta": 480,
+    "nombre": "¡Despertar arcano!",
+    "arquetipo": "Haruka"
+  },
+  {
+    "numero de carta": 481,
+    "nombre": "¡Ahora o nunca!",
+    "arquetipo": "Haruka"
   }
 ];
