@@ -2403,5 +2403,45 @@ export const cartas = [
     "numero de carta": 481,
     "nombre": "¡Ahora o nunca!",
     "arquetipo": "Haruka"
+  },
+  {
+    "numero de carta": 482,
+    "nombre": "Tacto helado",
+    "arquetipo": "Marina"
+  },
+  {
+    "numero de carta": 483,
+    "nombre": "Provocación",
+    "arquetipo": "Katshi"
+  },
+  {
+    "numero de carta": 484,
+    "nombre": "Enfoque absoluto",
+    "arquetipo": "Haruka"
+  },
+  {
+    "numero de carta": 485,
+    "nombre": "Void-oh",
+    "arquetipo": "Void-oh"
+  },
+  {
+    "numero de carta": 486,
+    "nombre": "Marina",
+    "arquetipo": "Marina"
+  },
+  {
+    "numero de carta": 487,
+    "nombre": "Atardecer",
+    "arquetipo": "General"
+  },
+  {
+    "numero de carta": 488,
+    "nombre": "Aliar ataques",
+    "arquetipo": "General"
+  },
+  {
+    "numero de carta": 489,
+    "nombre": "Ilusión",
+    "arquetipo": "General"
   }
 ];
