@@ -607,85 +607,6 @@ body {
     cover;
 }
 
-.carta-info {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-}
-
-
-.carta-info img {
-
-  height: 90px;
-
-  width: auto;
-}
-
-
-.carta-info span {
-
-  white-space: nowrap;
-
-  font-size: 1.2rem;
-
-  font-weight: 600;
-}
-
-
-.table {
-
-  margin:
-    0 auto;
-
-  width:
-    90%;
-}
-
-
-.table td,
-.table th {
-
-  text-align:
-    center;
-
-  vertical-align:
-    middle;
-}
-
-
-.table td:first-child,
-.table th:first-child {
-
-  text-align:
-    left;
-}
-
-
-.table td:nth-child(2),
-.table th:nth-child(2) {
-
-  text-align:
-    center;
-}
-
-
-.table tbody tr:hover {
-
-  background-color:
-    #f5f5f5;
-}
-
-
-td:first-child {
-
-  width:
-    280px;
-}
-
-
 .codigo-conducta {
 
   margin-top:
@@ -693,6 +614,96 @@ td:first-child {
 
   padding:
     20px;
+}
+
+.banlist-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  background: #fff;
+  border: 3px solid #000;
+  border-radius: 10px;
+  box-shadow: 6px 6px 0 #FACC15;
+  overflow-x: auto;
+}
+
+.banlist {
+  width: 100%;
+  margin: 0;
+}
+
+.banlist thead th {
+  padding: .75rem 1rem;
+  background: #000;
+  color: #FACC15;
+  font-weight: 800;
+  border: 0;
+  box-shadow: none;
+}
+
+.banlist td {
+  padding: .6rem 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.banlist tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.banlist tbody tr:hover td {
+  background: #FEF3C7;
+}
+
+.banlist th:last-child,
+.banlist td:last-child {
+  width: 11rem;
+  text-align: center;
+}
+
+.banlist .carta-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.banlist .carta-info img {
+  flex-shrink: 0;
+  width: 80px;
+  height: 108px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.banlist .carta-info span {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.banlist .badge {
+  padding: .4em .7em;
+  font-size: .8rem;
+  border: 2px solid #000;
+}
+
+@media (max-width: 575.98px) {
+
+  .banlist td,
+  .banlist thead th {
+    padding: .5rem .6rem;
+  }
+
+  .banlist th:last-child,
+  .banlist td:last-child {
+    width: 7.5rem;
+  }
+
+  .banlist .carta-info {
+    gap: .6rem;
+  }
+
+  .banlist .carta-info span {
+    font-size: 1rem;
+  }
 }
 
 
@@ -1220,22 +1231,6 @@ td:first-child {
 
   }
 
-
-  .carta-info span {
-
-    font-size:
-      1rem;
-
-  }
-
-
-  td:first-child {
-
-    width:
-      auto;
-
-  }
-
 }
 
 @media (max-width: 400px) {
@@ -1317,4 +1312,20 @@ td:first-child {
 
   }
 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before,
+  .hero-content,
+  .title-box,
+  .subtitle-box {
+    animation: none;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .banlist .carta-info img {
+    width: 56px;
+    height: 78px;
+  }
 }
