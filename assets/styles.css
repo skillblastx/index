@@ -951,6 +951,141 @@ body {
   border-bottom: 3px solid var(--acento);
 }
 
+.tabla-eventos {
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(43, 43, 54, 0.12);
+  border: 1px solid #f0e6c8;
+}
+
+.tabla-eventos__tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+.tabla-eventos__tabla thead th {
+  background: #2b2b36;
+  color: #ffc107;
+  font-weight: 700;
+  text-align: left;
+  padding: 1rem 1.25rem;
+}
+
+.tabla-eventos__tabla td {
+  padding: 0.85rem 1.25rem;
+  color: #2b2b36;
+  border-top: 1px solid #f3ecd6;
+  vertical-align: middle;
+}
+
+.tabla-eventos__tabla tbody tr:nth-child(even) {
+  background: #fffaf0;
+}
+
+.tabla-eventos__tabla tbody tr {
+  transition: background 0.15s ease;
+}
+
+.tabla-eventos__tabla tbody tr:hover {
+  background: #fff3c4;
+}
+
+.tabla-eventos__nombre {
+  font-weight: 600;
+}
+
+.tabla-eventos__fecha {
+  color: #6b6b7a;
+  white-space: nowrap;
+}
+
+.fila-destacada td:first-child {
+  box-shadow: inset 5px 0 0 #ffc107;
+  font-weight: 800;
+}
+
+.tipo {
+  display: inline-block;
+  padding: 0.15rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.tipo--campeonato {
+  background: #ffc107;
+  color: #2b2b36;
+}
+
+.tipo--liga {
+  background: #2b2b36;
+  color: #ffc107;
+}
+
+.tipo--qualifier {
+  background: #fff3c4;
+  color: #6b5200;
+}
+
+@media (max-width: 575.98px) {
+  .tabla-eventos__tabla thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .tabla-eventos__tabla,
+  .tabla-eventos__tabla tbody,
+  .tabla-eventos__tabla tr,
+  .tabla-eventos__tabla td {
+    display: block;
+    width: 100%;
+  }
+
+  .tabla-eventos__tabla tr {
+    padding: 0.5rem 0;
+    border-top: 1px solid #f0e6c8;
+  }
+
+  .tabla-eventos__tabla tbody tr:first-child {
+    border-top: 0;
+  }
+
+  .tabla-eventos__tabla td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border-top: 0;
+    padding: 0.35rem 1.25rem;
+    text-align: right;
+  }
+
+  .tabla-eventos__tabla td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: #6b6b7a;
+    text-align: left;
+  }
+
+  .fila-destacada td:first-child {
+    box-shadow: none;
+  }
+
+  .fila-destacada {
+    box-shadow: inset 5px 0 0 #ffc107;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabla-eventos__tabla tbody tr { transition: none; }
+}
+
 @media (max-width: 767.98px) {
 
   .reglas,
